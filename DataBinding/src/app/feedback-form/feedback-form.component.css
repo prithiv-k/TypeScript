@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select, textarea {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.preview-box {
+  border: 2px dashed #888;
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-top: 20px;
+  width: fit-content;
+}
