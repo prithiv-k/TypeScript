@@ -1,0 +1,39 @@
+<div *ngIf="employees.length > 0; else noData">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees"
+          [ngClass]="{
+            'present': emp.isPresent,
+            'absent': !emp.isPresent && !emp.workFromHome,
+            'wfh': emp.workFromHome
+          }">
+        <td [ngStyle]="{ 'font-weight': emp.isPresent ? 'bold' : 'normal' }">
+          {{ emp.name }}
+        </td>
+        <td [ngStyle]="{
+              'color': emp.department === 'IT' ? 'blue' :
+                       emp.department === 'HR' ? 'purple' :
+                       emp.department === 'Sales' ? 'orange' : 'black'
+            }">
+          {{ emp.department }}
+        </td>
+        <td>
+          <span *ngIf="emp.isPresent">✅ Present</span>
+          <span *ngIf="emp.workFromHome">🏠 Work From Home</span>
+          <span *ngIf="!emp.isPresent && !emp.workFromHome">❌ Absent</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p>No employee data available</p>
+</ng-template>
